@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from os.path import join
+
+upload_folder = join(request.folder, '..', 'rcwc', 'uploads')
+
 #article
 db.define_table( 'article'
                , Field('author_user_id', 'reference auth_user', requires=IS_NOT_EMPTY(), notnull=True, label='Author')
@@ -10,8 +14,8 @@ db.define_table( 'article'
                , Field('initial_approval', 'boolean', label='Initial Approval', default=None)
                , Field('final_approval', 'boolean', label='Final Approval', default=None)
                , Field('is_published', 'boolean', label='Article has been published', default=False)
-               , Field('attatchment', 'upload', requires=IS_NOT_EMPTY(), notnull=True, label='Original Attatchment')
-               , Field('edited_attatchment', 'upload', default='')
+               , Field('attatchment', 'upload', uploadfolder=upload_folder, requires=IS_NOT_EMPTY(), notnull=True, label='Original Attatchment')
+               , Field('edited_attatchment', 'upload', uploadfolder=upload_folder, default='')
                , auth.signature
                , format='%(title)s'
                )
@@ -24,8 +28,6 @@ db.article.id.readable = False
 db.define_table('departments',
     Field('name', notnull=True, unique=True),
     Field('symposium_id','reference symposium', label='Symposium'),
-    Field('submitted_sessions','boolean'),
-    Field('default_sessions_created', 'boolean', default=False),
     Field('department_rep_user_id','reference auth_user', label='Department Representative'),
     auth.signature,
     format='%(name)s')
