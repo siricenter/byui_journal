@@ -1,0 +1,12 @@
+{{left_sidebar_enabled=True,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'layout.html'}}
+
+{{include}}
+{{block left_sidebar}}
+<h2>{{=T("Chapters")}}</h2>
+<ul>
+    {{for chapter in chapters:}}
+    <li>{{=T(chapter.name)}}</li>
+    {{pass}}
+</ul>
+{{end}}
