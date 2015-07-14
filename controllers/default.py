@@ -19,7 +19,6 @@ def index():
     return auth.wiki()
     """
     response.flash = T("Welcome to the BYU-I Research Journal")
-    chapters = db(db.departments).select()
     recentArticles = db(db.article.is_published == True).select(db.article.ALL, limitby=(0, 5))
     return locals()
 

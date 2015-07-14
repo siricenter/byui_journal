@@ -105,11 +105,15 @@
     </header>
 
     <section id="main" class="main row">
-        {{if left_sidebar_enabled:}}
+        {{if True or left_sidebar_enabled:}}
         <div class="span3 left-sidebar">
             {{block left_sidebar}}
-            <h3>Left Sidebar</h3>
-            <p></p>
+            <h2>{{=T("Chapters")}}</h2>
+            <ul>
+                {{for chapter in chapters:}}
+                <li>{{=T(chapter.name)}}</li>
+                {{pass}}
+            </ul>
             {{end}}
         </div>
         {{pass}}
