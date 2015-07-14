@@ -1,0 +1,15 @@
+
+.article-links a {
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+.article-info {
+    margin-top: 10px;
+    font-size: larger;
+}
+
+.article-author {
+    margin-left:50px;
+}

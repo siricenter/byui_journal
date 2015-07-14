@@ -22,6 +22,24 @@ def index():
     recentArticles = db(db.article.is_published == True).select(db.article.ALL, limitby=(0, 5))
     return locals()
 
+def chapter():
+
+    response.view = 'article_list.html'
+    try:
+        chapter = db.departments[request.args[0]]
+    except IndexError:
+        raise HTTP(404)
+
+    if not chapter:
+        raise HTTP(404)
+
+    article_list = db(
+        (db.article.department_id == chapter.id) &
+        (db.auth_user.id == db.article.author_user_id) &
+        (db.article.is_published == True)
+    ).select()
+
+    return locals()
 
 def user():
     """

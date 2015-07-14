@@ -1,0 +1,19 @@
+{{left_sidebar_enabled=True,right_sidebar_enabled=False,('message' in globals())}}
+{{extend 'chapter_sidebar.html'}}
+
+<div class='span9'>
+{{for row in article_list:}}
+<div class="article-list-item">
+    <div class="pull-left article-info">
+    <p class="article-title">
+    {{=row.article.title}}
+    </p>
+    <p class='article-author'>by {{=row.auth_user.first_name}} {{=row.auth_user.last_name}}</p>
+    </div>
+    <div class="article-links pull-right">
+        <a class='btn' href>View</a>
+        <a class='btn' href>Download</a>
+</div>
+{{pass}}
+</div>
+
