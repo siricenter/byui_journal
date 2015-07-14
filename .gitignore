@@ -63,3 +63,10 @@ docs/_build/
 target/
 *.sublime-project
 *.sublime-workspace
+
+# Text editors
+*.sw[po]
+*~
+
+# Rope Python Toolkit
+.ropeproject/
