@@ -5,6 +5,7 @@
 
 .shadow {
     box-shadow: 1px 1px 3px grey;
+    padding: 10px;
 }
 
 .article-list-item {
