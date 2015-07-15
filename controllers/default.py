@@ -61,13 +61,40 @@ def search():
     crud = Crud(db)
 
     search_fields = [
-        'title',
-        'author_user_id',
-        'department_id',
+        db.auth_user.first_name,
+        db.auth_user.last_name,
+        db.article.title,
     ]
-    form, records = crud.search(db.article, fields=search_fields)
+
+    form = FORM(
+        INPUT(
+            _name="query",
+        ),
+        INPUT(
+            _name="Search",
+            _type='submit',
+        )
+    )
+
+    results = None
+    if form.process().accepted:
+        terms = form.vars.query.split()
+        results = db(
+            # Search by author name
+            ((db.auth_user.first_name.contains(terms) |
+            db.auth_user.last_name.contains(terms)) &
+            (db.article.author_user_id == db.auth_user.id)
+            # Search by article title
+            | db.article.title.contains(terms)
+
+            # Make sure the article is actually published
+            ) & (db.article.is_published == True)
+        ).select(db.article.ALL, distinct=True)
+
+
 
     return locals()
+
 def user():
     """
     exposes:
