@@ -6,7 +6,7 @@
 <h2>{{=T("Chapters")}}</h2>
 <ul>
     {{for chapter in chapters:}}
-    <li><a href="{{=URL('chapter', args='chapter.id')}}">{{=T(chapter.name)}}</a></li>
+    <li>{{=T(chapter.name)}}</li>
     {{pass}}
 </ul>
 {{end}}
