@@ -10,6 +10,8 @@
 #########################################################################
 
 
+from gluon.tools import Crud
+
 def index():
     """
     example action using the internationalization operator T and flash
@@ -41,6 +43,19 @@ def chapter():
 
     return locals()
 
+def search():
+    response.view = 'search.html'
+
+    crud = Crud(db)
+
+    search_fields = [
+        'title',
+        'author_user_id',
+        'department_id',
+    ]
+    form, records = crud.search(db.article, fields=search_fields)
+
+    return locals()
 def user():
     """
     exposes:
