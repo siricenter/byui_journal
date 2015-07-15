@@ -1,7 +1,9 @@
 {{left_sidebar_enabled=True,right_sidebar_enabled=False,('message' in globals())}}
 {{extend 'chapter_sidebar.html'}}
 
-<div class='span9'>
+<div class='article-list-wrapper shadow'>
+    {{if 'list_title' not in globals(): list_title = ''; pass}}
+    <h2>{{=list_title}}</h2>
 {{for row in article_list:}}
 <div class="article-list-item">
     <div class="article-links pull-right">
@@ -13,6 +15,9 @@
         <p class='article-author'>by {{=row.auth_user.first_name}} {{=row.auth_user.last_name}}</p>
     </div>
 </div>
+{{pass}}
+{{if not article_list:}}
+    <h3>Nothing yet! Check back later</h3>
 {{pass}}
 </div>
 

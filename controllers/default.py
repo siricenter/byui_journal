@@ -40,6 +40,7 @@ def chapter():
         (db.auth_user.id == db.article.author_user_id) &
         (db.article.is_published == True)
     ).select()
+    list_title = chapter.name
 
     return locals()
 
