@@ -1,20 +1,23 @@
 {{extend 'chapter_sidebar.html'}}
-
-<div id="carousel">
-    <img src="http://www.galleryleather.com/uploads/products/large/DeskJournal_Camden_Violet_5625x7875_029383.jpg">
-</div>
-<div id="bottom-block">
-    <div id="left-bottom-block">
-        <h2>{{=T("Writing an Article")}}</h2>
-        <p>
-            {{=T("Lorem ipsum.")}}
-        </p>
-    </div>
-    <div id="right-bottom-block">
-        <h2>{{=T("Submitting an Article")}}</h2>
-        <p>
-            {{=T("Lorem ipsum.")}}
-        </p>
-    </div>
-</div>
+<article class="container">
+    <section id="carousel" class="row">
+        <div class="span12">
+            <img src="http://www.galleryleather.com/uploads/products/large/DeskJournal_Camden_Violet_5625x7875_029383.jpg">
+        </div>
+    </section>
+    <section id="bottom-block" class="row">
+        <div id="left-bottom-block" class="span6">
+            <h2>{{=T("Writing an Article")}}</h2>
+            <p>
+                {{=T("Lorem ipsum.")}}
+            </p>
+        </div>
+        <div id="right-bottom-block" class="span6">
+            <h2>{{=T("Submitting an Article")}}</h2>
+            <p>
+                {{=T("Lorem ipsum.")}}
+            </p>
+        </div>
+    </section>
+</article>
 {{#=BEAUTIFY(response._vars)}}

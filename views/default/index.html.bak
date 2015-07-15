@@ -1,50 +1,21 @@
-{{left_sidebar_enabled=True,right_sidebar_enabled=False,('message' in globals())}}
-{{extend 'layout.html'}}
-
-{{if 'message' in globals():}}
-<h3>{{=message}}</h3>
-
-<h4>{{=T('How did you get here?')}}</h4>
-<ol>
-  <li>{{=T('You are successfully running web2py')}}</li>
-  <li>{{=XML(T('You visited the url %s', A(request.env.path_info,_href=request.env.path_info)))}}</li>
-  <li>{{=XML(T('Which called the function %s located in the file %s',
-             (A(request.function+'()',_href='#'),
-              A('web2py/applications/%(application)s/controllers/%(controller)s.py'%request,
-               _href=URL('admin','default','peek', args=(request.application,'controllers',request.controller+'.py'))))))}}</li>
-  <li>{{=XML(T('The output of the file is a dictionary that was rendered by the view %s',
-           A('web2py/applications/%(application)s/views/%(controller)s/index.html'%request,
-           _href=URL('admin','default','peek',args=(request.application,'views',request.controller,'index.html')))))}}</li>
-  <li>{{=T('You can modify this application and adapt it to your needs')}}</li>
-</ol>
-{{elif 'content' in globals():}}
-{{=content}}
-{{else:}}
-<div id="carousel">
-    <img src="http://www.galleryleather.com/uploads/products/large/DeskJournal_Camden_Violet_5625x7875_029383.jpg">
-</div>
-<div id="bottom-block">
-    <div id="left-bottom-block">
-        <h2>{{=T("Writing an Article")}}</h2>
-        <p>
-            {{=T("Lorem ipsum.")}}
-        </p>
-    </div>
-    <div id="right-bottom-block">
-        <h2>{{=T("Submitting an Article")}}</h2>
-        <p>
-            {{=T("Lorem ipsum.")}}
-        </p>
-    </div>
-</div>
+{{extend 'chapter_sidebar.html'}}
+<article class="container">
+    <section id="carousel" class="row">
+        <img src="http://www.galleryleather.com/uploads/products/large/DeskJournal_Camden_Violet_5625x7875_029383.jpg">
+    </section>
+    <section id="bottom-block" class="row">
+        <div id="left-bottom-block" class="span6">
+            <h2>{{=T("Writing an Article")}}</h2>
+            <p>
+                {{=T("Lorem ipsum.")}}
+            </p>
+        </div>
+        <div id="right-bottom-block" class="span6">
+            <h2>{{=T("Submitting an Article")}}</h2>
+            <p>
+                {{=T("Lorem ipsum.")}}
+            </p>
+        </div>
+    </section>
+</article>
 {{#=BEAUTIFY(response._vars)}}
-{{pass}}
-
-{{block left_sidebar}}
-<h2>{{=T("Chapters")}}</h2>
-<ul>
-    {{for chapter in chapters:}}
-    <li>{{=BEAUTIFY(chapter.name)}}</li>
-    {{pass}}
-</ul>
-{{end}}
