@@ -3,10 +3,12 @@
 
 {{include}}
 {{block left_sidebar}}
-<h2>{{=T("Chapters")}}</h2>
-<ul>
-    {{for chapter in chapters:}}
-    <li>{{=T(chapter.name)}}</li>
-    {{pass}}
-</ul>
+<div class="chapter-sidebar">
+    <h2>{{=T("Chapters")}}</h2>
+    <ul>
+        {{for chapter in chapters:}}
+        <li>{{=T(chapter.name)}}</li>
+        {{pass}}
+    </ul>
+</div>
 {{end}}

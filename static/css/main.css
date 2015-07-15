@@ -1,4 +1,15 @@
 
+.chapter-sidebar {
+    box-shadow: 1px 1px 3px grey;
+}
+
+.article-list-item {
+    clear: both;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 1px 1px 3px grey;
+}
+
 .article-links a {
     display: block;
     margin-bottom: 10px;
