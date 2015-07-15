@@ -77,20 +77,37 @@ def search():
         )
     )
 
-    results = None
+    article_list = []
+    list_title = 'Search Results'
+
     if form.process().accepted:
         terms = form.vars.query.split()
-        results = db(
+        article_list = db(
             # Search by author name
-            ((db.auth_user.first_name.contains(terms) |
-            db.auth_user.last_name.contains(terms)) &
-            (db.article.author_user_id == db.auth_user.id)
+            (
+                db.auth_user.first_name.contains(terms)
+            )
+            |
+            (
+                db.auth_user.last_name.contains(terms)
+            )
             # Search by article title
-            | db.article.title.contains(terms)
+            |
+                db.article.title.contains(terms)
 
             # Make sure the article is actually published
-            ) & (db.article.is_published == True)
-        ).select(db.article.ALL, distinct=True)
+            &
+                (db.article.is_published == True)
+            &
+                (db.article.author_user_id == db.auth_user.id)
+        ).select(
+            db.article.title,
+            db.article.id,
+            db.article.edited_attatchment,
+            db.auth_user.first_name,
+            db.auth_user.last_name,
+            #distinct=True,
+        )
 
 
 
