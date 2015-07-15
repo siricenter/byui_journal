@@ -1,5 +1,7 @@
 {{left_sidebar_enabled=True,right_sidebar_enabled=False,('message' in globals())}}
 {{extend 'chapter_sidebar.html'}}
+{{block list_header}}
+{{end}}
 
 <div class='article-list-wrapper shadow'>
     {{if 'list_title' not in globals(): list_title = ''; pass}}
