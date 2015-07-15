@@ -3,6 +3,10 @@
     box-shadow: 1px 1px 3px grey;
 }
 
+.shadow {
+    box-shadow: 1px 1px 3px grey;
+}
+
 .article-list-item {
     clear: both;
     margin-bottom: 20px;
@@ -23,4 +27,8 @@
 
 .article-author {
     margin-left:50px;
+}
+
+.article-wrapper {
+   padding: 10px; 
 }

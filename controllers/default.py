@@ -43,6 +43,18 @@ def chapter():
 
     return locals()
 
+def article():
+    response.view = 'article_view.html'
+
+    article = db.article(request.args(0))
+
+    if not article or not article.is_published:
+        raise HTTP(404)
+
+    author_user = db.auth_user(article.author_user_id)
+
+    return locals()
+
 def search():
     response.view = 'search.html'
 
