@@ -16,13 +16,8 @@ from gluon.tools import Crud
 
 def index():
     """
-    example action using the internationalization operator T and flash
-    rendered by views/default/index.html or views/generic.html
-
-    if you need a simple wiki simply replace the two lines below with:
-    return auth.wiki()
+    Homepage
     """
-    response.flash = T("Welcome to the BYU-I Research Journal")
     recentArticles = db(db.article.publication_date != None).select(db.article.ALL, limitby=(0, 5))
     return locals()
 
