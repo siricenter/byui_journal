@@ -150,7 +150,7 @@ def embed_download():
     if not request.args(0):
         raise HTTP(404)
 
-    path = os.path.join('..', 'rcwc', 'uploads', request.args(0))
+    path = os.path.join('applications', 'rcwc', 'uploads', request.args(0))
 
     return response.stream(path, 400)
 
