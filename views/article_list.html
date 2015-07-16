@@ -5,16 +5,16 @@
 
 <div class='article-list-wrapper shadow'>
     {{if 'list_title' not in globals(): list_title = ''; pass}}
-    <h2>{{=list_title}}</h2>
+    <h2 class="list-title">{{=list_title}}</h2>
 {{for row in article_list:}}
 <div class="article-list-item">
     <div class="article-links pull-right">
         <a class='btn' href="{{=URL('article', args=row.article.id)}}">View</a>
         <a class='btn' href="{{=URL('download', args=row.article.edited_attatchment)}}">Download</a>
     </div>
+    <p class="article-title">{{=row.article.title}}</p>
     <div class="article-info">
         <p class='article-published'>Published on {{=row.article.publication_date.strftime('%B %-d, %Y')}}</p>
-        <p class="article-title">{{=row.article.title}}</p>
         <p class='article-author'>by {{=row.auth_user.first_name}} {{=row.auth_user.last_name}}</p>
     </div>
 </div>
