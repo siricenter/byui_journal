@@ -6,7 +6,6 @@
         <p class='article-author'>by {{=author_user.first_name}} {{=author_user.last_name}}</p>
     </div>
     <div class="article-view">
-        <object data="{{=URL('download', args=article.edited_attatchment)}}" type="application/pdf" width="100%">
-        </object>
+        <object data="{{=URL('embed_download', args=article.edited_attatchment)}}" width=500 height=500></object>
     </div>
 </div>

@@ -10,6 +10,8 @@
 #########################################################################
 
 
+import os
+
 from gluon.tools import Crud
 
 def index():
@@ -21,7 +23,7 @@ def index():
     return auth.wiki()
     """
     response.flash = T("Welcome to the BYU-I Research Journal")
-    recentArticles = db(db.article.is_published == True).select(db.article.ALL, limitby=(0, 5))
+    recentArticles = db(db.article.publication_date != None).select(db.article.ALL, limitby=(0, 5))
     return locals()
 
 def chapter():
@@ -38,7 +40,7 @@ def chapter():
     article_list = db(
         (db.article.department_id == chapter.id) &
         (db.auth_user.id == db.article.author_user_id) &
-        (db.article.is_published == True)
+        (db.article.publication_date != None)
     ).select()
     list_title = chapter.name
 
@@ -49,7 +51,7 @@ def article():
 
     article = db.article(request.args(0))
 
-    if not article or not article.is_published:
+    if not article or not article.publication_date:
         raise HTTP(404)
 
     author_user = db.auth_user(article.author_user_id)
@@ -97,7 +99,7 @@ def search():
 
             # Make sure the article is actually published
             &
-                (db.article.is_published == True)
+                (db.article.publication_date != None)
             &
                 (db.article.author_user_id == db.auth_user.id)
         ).select(
@@ -138,6 +140,19 @@ def download():
     """
     return response.download(request, db)
 
+@cache.action()
+def embed_download():
+    """
+    allows downloading of uploaded files
+    http://..../[app]/default/download/[filename]
+    """
+
+    if not request.args(0):
+        raise HTTP(404)
+
+    path = os.path.join('..', 'rcwc', 'uploads', request.args(0))
+
+    return response.stream(path, 400)
 
 def call():
     """

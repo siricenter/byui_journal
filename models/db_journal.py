@@ -13,7 +13,7 @@ db.define_table( 'article'
                , Field('comments', 'text', length=65536)
                , Field('initial_approval', 'boolean', label='Initial Approval', default=None)
                , Field('final_approval', 'boolean', label='Final Approval', default=None)
-               , Field('is_published', 'boolean', label='Article has been published', default=False)
+               , Field('publication_date', 'date', requires=IS_DATE(), label='Date of Publication', default=None)
                , Field('attatchment', 'upload', uploadfolder=upload_folder, requires=IS_NOT_EMPTY(), notnull=True, label='Original Attatchment')
                , Field('edited_attatchment', 'upload', uploadfolder=upload_folder, default='')
                , auth.signature
