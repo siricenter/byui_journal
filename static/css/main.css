@@ -20,6 +20,11 @@
     margin-bottom: 10px;
 }
 
+.article-published {
+    float: right;
+    margin-right: 20px;
+    margin-top: 28px;
+}
 
 .article-info {
     margin-top: 10px;

@@ -41,7 +41,7 @@ def chapter():
         (db.article.department_id == chapter.id) &
         (db.auth_user.id == db.article.author_user_id) &
         (db.article.publication_date != None)
-    ).select()
+    ).select(orderby=~db.article.publication_date)
     list_title = chapter.name
 
     return locals()
