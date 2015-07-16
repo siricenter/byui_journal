@@ -67,6 +67,8 @@ target/
 # Text editors
 *.sw[po]
 *~
+*.bak
+
 
 # Rope Python Toolkit
 .ropeproject/
