@@ -2,6 +2,7 @@
 
 <div class="article-wrapper shadow">
     <div class="article-info">
+        <p class='article-published'>Published on {{=article.publication_date.strftime('%B %-d, %Y')}}</p>
         <p class="article-title">{{=article.title}}</p>
         <p class='article-author'>by {{=author_user.first_name}} {{=author_user.last_name}}</p>
     </div>
