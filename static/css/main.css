@@ -64,10 +64,50 @@
     }
 }
 
+.drawer-open {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #000;
+    display: inline-block;
+    content: "";
+    margin-top: 10px;
+}
+
+.drawer-close {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #000;
+    display: inline-block;
+    content: "";
+    margin-top: 10px;
+}
+
 .drawer.show .drawer-contents {
     display: block;
 }
 
+.drawer .drawer-close {
+    display: none;
+}
+
+.drawer.show .drawer-close {
+    display: inline-block;
+}
+
+.drawer.show .drawer-open {
+    display: none;
+}
+
+
+@media screen and (min-width: 768px) {
+    .drawer-toggle {
+    display: none;
+    }
+}
 /**** Article lists *******************************************************/
 
 .article-list-item {
