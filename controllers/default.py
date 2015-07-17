@@ -101,6 +101,7 @@ def search():
             db.article.title,
             db.article.id,
             db.article.edited_attatchment,
+            db.article.publication_date,
             db.auth_user.first_name,
             db.auth_user.last_name,
             #distinct=True,
