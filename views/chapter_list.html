@@ -1,13 +1,11 @@
 {{extend 'article_list.html'}}
 
 {{block list_header}}
-<div id="search-form">
-{{=form}}
-</div>
+<h3 class="chapter-name">{{=chapter.name}}</h3>
 {{end}}
 
 {{=results}}
 
 {{block no-articles}}
-<h3>{{=no_results}}</h3>
+<h3>Nothing yet! Check back later</h3>
 {{end}}

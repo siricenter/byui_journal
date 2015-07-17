@@ -23,7 +23,7 @@ def index():
 
 def chapter():
 
-    response.view = 'article_list.html'
+    response.view = 'chapter_list.html'
     try:
         chapter = db.departments[request.args[0]]
     except IndexError:
@@ -37,7 +37,6 @@ def chapter():
         (db.auth_user.id == db.article.author_user_id) &
         (db.article.publication_date != None)
     ).select(orderby=~db.article.publication_date)
-    list_title = chapter.name
 
     return locals()
 
@@ -71,27 +70,29 @@ def search():
         INPUT(
             _name="Search",
             _type='submit',
-        )
+            _id="search-button",
+        ),
+        _method="GET",
     )
 
     article_list = []
-    list_title = 'Search Results'
+    no_results = 'Please enter search terms'
 
-    if form.process().accepted:
-        terms = form.vars.query.split()
+    if request.get_vars.query:
+        terms = request.get_vars.query.split()
         article_list = db(
-            # Search by author name
             (
-                db.auth_user.first_name.contains(terms)
-            )
-            |
-            (
-                db.auth_user.last_name.contains(terms)
-            )
-            # Search by article title
-            |
-                db.article.title.contains(terms)
+                # Search by author name
+                (
+                    db.auth_user.first_name.contains(terms)
+                |
+                    db.auth_user.last_name.contains(terms)
+                )
+                # Search by article title
+                |
+                    db.article.title.contains(terms)
 
+            )
             # Make sure the article is actually published
             &
                 (db.article.publication_date != None)
@@ -106,6 +107,9 @@ def search():
             db.auth_user.last_name,
             #distinct=True,
         )
+
+        no_results = "Nothing. Perhaps use more generic terms?"
+        response.flash = None
 
 
 

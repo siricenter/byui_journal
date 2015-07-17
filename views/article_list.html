@@ -4,8 +4,6 @@
 {{end}}
 
 <div class='article-list-wrapper shadow'>
-    {{if 'list_title' not in globals(): list_title = ''; pass}}
-    <h2 class="list-title">{{=list_title}}</h2>
 {{for row in article_list:}}
 <div class="article-list-item">
     <div class="article-links pull-right">
@@ -20,7 +18,9 @@
 </div>
 {{pass}}
 {{if not article_list:}}
+{{block no-articles }}
     <h3>Nothing yet! Check back later</h3>
+{{end}}
 {{pass}}
 </div>
 
