@@ -56,6 +56,18 @@
     padding: 10px;
 }
 
+/**** Chapter Drawer *****************************************************/
+
+@media screen and (max-width: 767px) {
+    .drawer-contents {
+        display:none;
+    }
+}
+
+.drawer.show .drawer-contents {
+    display: block;
+}
+
 /**** Article lists *******************************************************/
 
 .article-list-item {
