@@ -25,15 +25,15 @@ def chapter():
 
     response.view = 'chapter_list.html'
     try:
-        chapter = db.departments[request.args[0]]
+        chapter_name = db.departments[request.args[0]]
     except IndexError:
         raise HTTP(404)
 
-    if not chapter:
+    if not chapter_name:
         raise HTTP(404)
 
     article_list = db(
-        (db.article.department_id == chapter.id) &
+        (db.article.department_id == chapter_name.id) &
         (db.auth_user.id == db.article.author_user_id) &
         (db.article.publication_date != None)
     ).select(orderby=~db.article.publication_date)

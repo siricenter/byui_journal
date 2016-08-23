@@ -7,7 +7,7 @@
         <div class="article-links pull-right">
             <a class='btn' href="{{=URL('download', args=article.edited_attatchment)}}">Download</a>
         </div>
-            <p class='article-published'>Published on {{=article.publication_date.strftime('%B %-d, %Y')}}</p>
+            <p class='article-published'>Published on {{=article.publication_date.strftime('%B %d, %Y')}}</p>
             <p class='article-author'>by {{=author_user.first_name}} {{=author_user.last_name}}</p>
         </div>
         <div class="article-view">
