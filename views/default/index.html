@@ -1,23 +1,111 @@
 {{extend 'chapter_sidebar.html'}}
-<article class="container">
-    <section id="carousel" class="row">
+{{block main_carousel}}
+    <div>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <img src="http://4.bp.blogspot.com/-q6a7bHWKRyw/Th4gxxZSgXI/AAAAAAAAAas/ttXM9Pe-gcA/s1600/open+journals.jpg" alt="Chania">
+            </div>
+
+            <div class="item">
+              <img src="http://cdn.shopify.com/s/files/1/0903/2160/products/journals-personalized-santa-fe-leather-wrap-journal-3.jpg?v=1454310924" alt="Chania">
+            </div>
+
+            <div class="item">
+                <img src="https://www.ijntr.org/my_panel/admin_panel/slider/slider/18Journal-Banner.jpg"  alt="Flower">
+            </div>
+
+            <div class="item">
+                <img src="https://www.software.ac.uk/sites/default/files/images/content/JournalTOCS.jpg" alt="Flower">
+            </div>
+        </div>
+
+        <!-- <div> -->
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+<!--     <section id="carousel" class="row">
         <div class="span12">
             <img src="http://www.galleryleather.com/uploads/products/large/DeskJournal_Camden_Violet_5625x7875_029383.jpg">
         </div>
-    </section>
-    <section id="bottom-block" class="row">
-        <div id="left-bottom-block" class="span6">
-            <h2>{{=T("Writing an Article")}}</h2>
-            <p>
-                {{=T("Lorem ipsum.")}}
-            </p>
+    </section> -->
+{{end}}
+<article class="body-container">
+    <section id="bottom-block" class="">
+        <div class="tips-container">
+            <!-- <div id="left-bottom-block" class="span6"> -->
+            <div id="left-bottom-block" class="">
+            <!-- <div id="left-bottom-block" class="col-sm-6"> -->
+                <h2 class="">{{=T("Writing an Article")}}</h2>
+                <p>
+                    {{=T("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae blandit tellus. Etiam et nisi nec elit porttitor luctus nec a ante. Nullam luctus placerat accumsan. Curabitur sit amet scelerisque orci, non accumsan sem. Nulla ut mi augue. Donec auctor commodo mi sed mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec ut accumsan mauris. Quisque euismod euismod diam, ut tempor sem consectetur quis. Mauris eleifend diam vitae risus porttitor elementum. Sed id interdum erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec posuere nisl, ac commodo libero. Nam lacinia lacus sed erat vestibulum, nec iaculis dui mollis. Praesent accumsan mi ipsum, sed aliquet sapien viverra id. Aliquam erat volutpat.")}}
+                </p>
+            </div>
+            <!-- <div id="right-bottom-block" class="span6"> -->
+            <div id="right-bottom-block" class="">
+            <!-- <div id="right-bottom-block" class="col-sm-6"> -->
+                <h2 class="pull-right">{{=T("Submitting an Article")}}</h2>
+                <p class="pull-left">
+                    {{=T("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae blandit tellus. Etiam et nisi nec elit porttitor luctus nec a ante. Nullam luctus placerat accumsan. Curabitur sit amet scelerisque orci, non accumsan sem. Nulla ut mi augue. Donec auctor commodo mi sed mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec ut accumsan mauris. Quisque euismod euismod diam, ut tempor sem consectetur quis. Mauris eleifend diam vitae risus porttitor elementum. Sed id interdum erat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec posuere nisl, ac commodo libero. Nam lacinia lacus sed erat vestibulum, nec iaculis dui mollis. Praesent accumsan mi ipsum, sed aliquet sapien viverra id. Aliquam erat volutpat.")}}
+                </p>
+            </div>
         </div>
-        <div id="right-bottom-block" class="span6">
-            <h2>{{=T("Submitting an Article")}}</h2>
-            <p>
-                {{=T("Lorem ipsum.")}}
-            </p>
-        </div>
+
+        <div class="article-samples">
+            {{count = 1}}
+            {{for pdf in recentArticles:}}
+                <div class="article-sample">
+                    <div class="article-sample-header row">
+                        <h4 class="pull-left">{{=pdf.article.title}}</h4>
+                        <h4 class="pull-right">{{=pdf.auth_user.first_name}} {{=pdf.auth_user.last_name}}</h4>
+                    </div>
+                    <div class="article-container">
+                        <div class="blackout" onclick="location.href='{{=URL('article', args=pdf.article.id)}}'"></div>
+                        <div class="article">
+                            <embed class="embedded-pdf" src="{{=URL('embed_download', args=pdf.article.edited_attatchment)}}#toolbar=0&navpanes=0&scrollbar=0" height="300px" width="100%">
+                        </div>
+                    </div>
+                    <div class="verticalLine"></div>
+                </div>
+                {{count += 1}}
+            {{pass}}
+        </div> <!-- /article-samples -->
+
+
+
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                setWidth();
+            });
+
+            $(window).resize(function() {
+                setWidth();
+            });
+
+            var setWidth = function() {
+                var art_width = $(".article").width();
+                $(".blackout, .article-container").width(art_width);
+            }
+
+
+        </script>
+
     </section>
 </article>
 {{#=BEAUTIFY(response._vars)}}

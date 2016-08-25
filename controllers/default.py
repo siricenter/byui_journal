@@ -18,7 +18,10 @@ def index():
     """
     Homepage
     """
-    recentArticles = db(db.article.publication_date != None).select(db.article.ALL, limitby=(0, 5))
+    # recentArticles = db(db.article.publication_date != None).select(db.article.ALL, limitby=(0, 5))
+    recentArticles = db((db.article.publication_date != None) &
+                        (db.auth_user.id == db.article.author_user_id))\
+                    .select(db.article.ALL, db.auth_user.first_name, db.auth_user.last_name, limitby=(0, 5), orderby=~db.article.modified_on)
     return locals()
 
 def chapter():
