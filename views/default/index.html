@@ -1,7 +1,6 @@
 {{extend 'chapter_sidebar.html'}}
 {{block main_carousel}}
-    <div>
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="span12 carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -29,7 +28,7 @@
             </div>
         </div>
 
-        <!-- <div> -->
+        <div>
             <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -67,7 +66,6 @@
         </div>
 
         <div class="article-samples">
-            {{count = 1}}
             {{for pdf in recentArticles:}}
                 <div class="article-sample">
                     <div class="article-sample-header row">
@@ -82,7 +80,6 @@
                     </div>
                     <div class="verticalLine"></div>
                 </div>
-                {{count += 1}}
             {{pass}}
         </div> <!-- /article-samples -->
 
