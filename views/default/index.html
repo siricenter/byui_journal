@@ -73,7 +73,7 @@
                         <h4 class="pull-right">{{=pdf.auth_user.first_name}} {{=pdf.auth_user.last_name}}</h4>
                     </div>
                     <div class="article-container">
-                        <div class="blackout" onclick="location.href='{{#{{=URL('article', args=pdf.article.id)}}'"></div>
+                        <div class="blackout" onclick="location.href='{{=URL('article', args=pdf.article.id)}}'"></div>
                         <div class="article">
                             <embed class="embedded-pdf" src="{{=URL('embed_download', args=pdf.article.edited_attatchment)}}#toolbar=0&navpanes=0&scrollbar=0" height="300px" width="100%">
                         </div>
